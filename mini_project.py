@@ -27,7 +27,6 @@ import torchvision.transforms as transforms
 import torchvision
 import torch
 
-!git clone https: // github.com/JAACKSONN/10315-Final-Project.git
 
 """As far as our dataset, we utilized a dataset including hundreds of images of six classes of trash including glass, plastic, paper, cardboard, trash, and metal. The dataset has hundreds of images of size 512 x 384 along with their proper class labels, including a training set and a separate testing set for our model to use.
 
@@ -58,41 +57,18 @@ Our experimental question involves the effect of regularization on the quality o
 # You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
 
 
-# Delete the folder in case pre-existing
-! mkdir data
-! rm - r data/test
-! rm - r data/train
+# classes = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
 
-# Make test and training data
-! mkdir data/train
-! mkdir data/test
+# for className in classes:
+#     directory = "./archive/Garbage classification/Garbage classification/" + className
+#     dir = os.listdir(directory)
+#     for i, img in enumerate(dir):
+#         if i < len(dir) * 0.7:
+#             shutil.copy(directory + "/" + img, "data/test/" + className)
+#         else:
+#             shutil.copy(directory + "/" + img, "data/train/" + className)
 
-! mkdir data/train/cardboard
-! mkdir data/train/glass
-! mkdir data/train/metal
-! mkdir data/train/paper
-! mkdir data/train/plastic
-! mkdir data/train/trash
-
-! mkdir data/test/cardboard
-! mkdir data/test/glass
-! mkdir data/test/metal
-! mkdir data/test/paper
-! mkdir data/test/plastic
-! mkdir data/test/trash
-
-classes = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
-
-for className in classes:
-    directory = "/content/10315-Final-Project/archive/Garbage classification/Garbage classification/" + className
-    dir = os.listdir(directory)
-    for i, img in enumerate(dir):
-        if i < len(dir) * 0.7:
-            shutil.copy(directory + "/" + img, "data/test/" + className)
-        else:
-            shutil.copy(directory + "/" + img, "data/train/" + className)
-
-DATASET_ROOT = "/content/data"
+DATASET_ROOT = "./data"
 SPLITS = ["train", "test"]
 CLASSNAME_LABELS = ["cardboard", "glass", "metal", "paper", "plastic", "trash"]
 SIZE = 224
@@ -679,7 +655,7 @@ Convolutional Neural Network
 As can be seen above, the convolutional neural network works better than the fully connected neural network because it better accounts for the important features in the images that we are looking for, which is the pieces of trash themselves. Furthermore, the pretrained=true model for the convolutional neural network works even better, with a very low error rate, since it takes advantage of parameters found in previous training models.
 """
 
-trainAndPlot(pretrained=False)
+# trainAndPlot(pretrained=False)
 
 # trainAndPlot(pretrained=True)
 
